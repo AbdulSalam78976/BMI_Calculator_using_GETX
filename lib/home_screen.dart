@@ -14,11 +14,11 @@ class _HomeScreenState extends State<HomeScreen> {
   //register the controller
   final bmicontroller = Get.put(BmiController());
 
-  final height = Get.height;
-  final width = Get.width;
-
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -140,16 +140,16 @@ class _HomeScreenState extends State<HomeScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                WeightContainer(),
+                WeightContainer(height: height, width: width),
 
                 SizedBox(width: 30),
-                AgeContainer(),
+                AgeContainer(height: height, width: width),
               ],
             ),
 
             SizedBox(height: 20),
 
-            Button(),
+            Button(height: height, width: width),
           ],
         ),
       ),
@@ -158,10 +158,10 @@ class _HomeScreenState extends State<HomeScreen> {
 }
 
 class Button extends StatelessWidget {
-  Button({super.key});
+  Button({super.key, required this.height, required this.width});
 
-  final height = Get.height;
-  final width = Get.width;
+  final height;
+  final width;
 
   //find the already registered controller
   final bmicontroller = Get.find<BmiController>();
@@ -232,10 +232,10 @@ class Button extends StatelessWidget {
 }
 
 class WeightContainer extends StatelessWidget {
-  WeightContainer({super.key});
+  WeightContainer({super.key, required this.height, required this.width});
 
-  final height = Get.height;
-  final width = Get.width;
+  final height;
+  final width;
   final bmicontroller = Get.find<BmiController>();
 
   @override
@@ -299,10 +299,10 @@ class WeightContainer extends StatelessWidget {
 }
 
 class AgeContainer extends StatelessWidget {
-  AgeContainer({super.key});
+  AgeContainer({super.key, required this.height, required this.width});
 
-  final height = Get.height;
-  final width = Get.width;
+  final height;
+  final width;
   final bmicontroller = Get.find<BmiController>();
 
   @override
